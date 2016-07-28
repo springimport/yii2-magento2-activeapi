@@ -2,6 +2,8 @@
 
 namespace springimport\yii2\magento2\activeapi\models;
 
+use springimport\yii2\magento2\activeapi\components\ActiveApi;
+
 class QuoteCartManagement extends ActiveApi
 {
     const SCENARIO_CUSTOMERS_CARTS = 'customersCarts';

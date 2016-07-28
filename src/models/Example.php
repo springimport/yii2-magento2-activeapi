@@ -4,6 +4,7 @@ namespace springimport\yii2\magento2\activeapi\models;
 
 use yii2tech\embedded\ContainerInterface;
 use yii2tech\embedded\ContainerTrait;
+use springimport\yii2\magento2\activeapi\components\ActiveApi;
 
 class Example extends ActiveApi implements ContainerInterface
 {

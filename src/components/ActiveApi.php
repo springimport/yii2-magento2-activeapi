@@ -6,13 +6,11 @@ use springimport\magento2\apiv1\ApiFactory;
 
 class ActiveApi extends \yii\base\Model
 {
-    protected $source;
+    protected static $source;
     private $resultHandler;
 
     public function __construct($config = array())
     {
-        $this->source = ApiFactory::getInstance();
-
         $resultHandler = new DefaultResultHandler;
 
         $this->setResultHandler($resultHandler);
@@ -65,9 +63,21 @@ class ActiveApi extends \yii\base\Model
     {
         $this->validateUrls();
 
-        $query = $this->source->post($urls[$this->scenario],
+        $urls = $this->urls();
+
+        $query = self::getSource()->post($urls[$this->scenario],
         ['json' => $this->toArray()]);
 
         return $this->getResultHandler()->result($query);
+    }
+
+    public static function setSource($source)
+    {
+        self::$source = $source;
+    }
+
+    public static function getSource()
+    {
+        return self::$source;
     }
 }
