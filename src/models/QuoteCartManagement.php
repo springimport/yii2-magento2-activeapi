@@ -2,9 +2,6 @@
 
 namespace springimport\yii2\magento2\activeapi\models;
 
-use yii2tech\embedded\ContainerInterface;
-use yii2tech\embedded\ContainerTrait;
-
 class QuoteCartManagement extends ActiveApi
 {
     const SCENARIO_CUSTOMERS_CARTS = 'customersCarts';
