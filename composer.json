@@ -1,0 +1,24 @@
+{
+    "name": "springimport/yii2-magento2-activeapi",
+    "description": "Implementation of Magento 2 REST API, made in the ActiveRecord-style",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","magento2","api client"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mykhailo Shatilov",
+            "email": "mykhailo@springimport.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "springimport/magento2-api-v1": "*",
+        "teapot/status": "@dev",
+        "yii2tech/embedded": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "springimport\\yii2\\magento2\\activeapi\\src\\": ""
+        }
+    }
+}
