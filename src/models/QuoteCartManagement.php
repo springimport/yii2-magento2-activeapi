@@ -36,8 +36,7 @@ class QuoteCartManagement extends ActiveApi
     public function urls()
     {
         return [
-            self::SCENARIO_CUSTOMERS_CARTS =>
-            sprintf('customers/%s/carts', $this->customer_id),
+            self::SCENARIO_CUSTOMERS_CARTS => 'customers/%s/carts',
         ];
     }
 }

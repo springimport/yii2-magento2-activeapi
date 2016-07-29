@@ -6,31 +6,18 @@ use springimport\magento2\apiv1\ApiFactory;
 
 class ActiveApi extends \yii\base\Model
 {
+
+    use ArrayableTrait;
     protected static $source;
     private $resultHandler;
 
     public function __construct($config = array())
     {
-        $resultHandler = new DefaultResultHandler;
+        $resultHandler = new TextResultHandler;
 
         $this->setResultHandler($resultHandler);
 
         parent::__construct($config);
-    }
-
-    public function toArray(
-    array $fields = [], array $expand = [], $recursive = true
-    )
-    {
-        $scenarios = $this->scenarios();
-
-        if (!isset($scenarios[$this->scenario])) {
-            throw new Exception('Undefined scenario.');
-        }
-
-        $fields = $scenarios[$this->scenario];
-
-        return parent::toArray($fields);
     }
 
     public function setResultHandler(ResultHandlerInterface $resultHandler)
@@ -59,14 +46,38 @@ class ActiveApi extends \yii\base\Model
         return [];
     }
 
-    public function post()
+    private function getUrlByScenario($urlOptions = [])
     {
         $this->validateUrls();
 
         $urls = $this->urls();
 
-        $query = self::getSource()->post($urls[$this->scenario],
-        ['json' => $this->toArray()]);
+        return vsprintf($urls[$this->scenario], $urlOptions);
+    }
+
+    public function get($urlOptions = [])
+    {
+        $url = $this->getUrlByScenario($urlOptions);
+
+        $query = self::getSource()->get($url, ['query' => $this->toArray()]);
+
+        return $this->getResultHandler()->result($query);
+    }
+
+    public function post($urlOptions = [])
+    {
+        $url = $this->getUrlByScenario($urlOptions);
+
+        $query = self::getSource()->post($url, ['json' => $this->toArray()]);
+        
+        return $this->getResultHandler()->result($query);
+    }
+
+    public function delete($urlOptions = [])
+    {
+        $url = $this->getUrlByScenario($urlOptions);
+
+        $query = self::getSource()->delete($url, ['json' => $this->toArray()]);
 
         return $this->getResultHandler()->result($query);
     }
