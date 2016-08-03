@@ -3,17 +3,17 @@
 namespace springimport\yii2\magento2\activeapi\models;
 
 use springimport\yii2\magento2\activeapi\components\ActiveApi;
+use springimport\yii2\magento2\activeapi\models\QuoteCartItemRepository\CartItem;
 use yii2tech\embedded\ContainerInterface;
 use yii2tech\embedded\ContainerTrait;
-use springimport\yii2\magento2\activeapi\models\QuoteGuestCartItemRepository\CartItem;
 
-class QuoteGuestCartItemRepository extends ActiveApi implements ContainerInterface
+class QuoteCartItemRepository extends ActiveApi implements ContainerInterface
 {
 
     use ContainerTrait;
-    const SCENARIO_GET_CARTS_ITEMS    = 'getCartsItems';
-    const SCENARIO_POST_CARTS_ITEMS   = 'postCartsItems';
-    const SCENARIO_DELETE_CARTS_ITEMS = 'deleteCartsItems';
+    const SCENARIO_GET_CARTS_ITEMS    = 'getCustomersCarts';
+    const SCENARIO_POST_CARTS_ITEMS   = 'postCustomersCarts';
+    const SCENARIO_DELETE_CARTS_ITEMS = 'deleteCustomersCarts';
 
     public $cart_item;
 
@@ -21,7 +21,7 @@ class QuoteGuestCartItemRepository extends ActiveApi implements ContainerInterfa
     {
         return [
             [
-                ['cart_item'], 'required',
+                'cart_item', 'required',
             ],
             [
                 'cart_item', 'yii2tech\embedded\Validator',
@@ -32,7 +32,7 @@ class QuoteGuestCartItemRepository extends ActiveApi implements ContainerInterfa
     public function attributeLabels()
     {
         return [
-            'cart_item' => 'Item',
+            'cart_item' => 'Cart item',
         ];
     }
 

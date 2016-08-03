@@ -5,6 +5,9 @@ namespace springimport\yii2\magento2\activeapi\components;
 trait ArrayableTrait
 {
 
+    /**
+     * @inheritdoc
+     */
     public function toArray(
     array $fields = [], array $expand = [], $recursive = true
     )
@@ -20,6 +23,9 @@ trait ArrayableTrait
         return parent::toArray($fields);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected function resolveFields(array $fields, array $expand)
     {
         return empty($fields) ? [] : parent::resolveFields($fields, $expand);
