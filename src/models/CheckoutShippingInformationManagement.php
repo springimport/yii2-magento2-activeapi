@@ -11,7 +11,7 @@ class CheckoutShippingInformationManagement extends ActiveApi implements Contain
 {
 
     use ContainerTrait;
-    const SCENARIO_POST_CARTS_SHIPPING_INFORMATION = 'postShippingInformation';
+    const SCENARIO_POST_CARTS_SHIPPING_INFORMATION = 'postCartsShippingInformation';
 
     public $addressInformation;
 
@@ -37,14 +37,14 @@ class CheckoutShippingInformationManagement extends ActiveApi implements Contain
     public function scenarios()
     {
         return [
-            self::SCENARIO_POST_CARTS_ITEMS => ['addressInformation'],
+            self::SCENARIO_POST_CARTS_SHIPPING_INFORMATION => ['addressInformation'],
         ];
     }
 
     public function urls()
     {
         return [
-            self::SCENARIO_POST_CARTS_ITEMS => 'carts/%s/shipping-information',
+            self::SCENARIO_POST_CARTS_SHIPPING_INFORMATION => 'carts/%s/shipping-information',
         ];
     }
 

@@ -1,13 +1,14 @@
 <?php
 
-namespace springimport\yii2\magento2\activeapi\models;
+namespace springimport\yii2\magento2\activeapi\models\CheckoutShippingInformationManagement;
 
 use yii2tech\embedded\ContainerInterface;
 use yii2tech\embedded\ContainerTrait;
+use yii\base\Model;
 use springimport\yii2\magento2\activeapi\models\common\Address;
 use springimport\yii2\magento2\activeapi\models\common\CustomAttributes;
 
-class AddressInformation implements ContainerInterface
+class AddressInformation extends Model implements ContainerInterface
 {
 
     use ContainerTrait;

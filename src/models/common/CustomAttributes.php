@@ -2,7 +2,9 @@
 
 namespace springimport\yii2\magento2\activeapi\models\common;
 
-class CustomAttributes
+use yii\base\Model;
+
+class CustomAttributes extends Model
 {
     public $attribute_code;
     public $value;

@@ -4,9 +4,10 @@ namespace springimport\yii2\magento2\activeapi\models\common;
 
 use yii2tech\embedded\ContainerInterface;
 use yii2tech\embedded\ContainerTrait;
+use yii\base\Model;
 use springimport\yii2\magento2\activeapi\models\common\CustomAttributes;
 
-class Address implements ContainerInterface
+class Address extends Model implements ContainerInterface
 {
 
     use ContainerTrait;
@@ -56,7 +57,8 @@ class Address implements ContainerInterface
             ],
             [
                 [
-                    'shipping_address', 'billing_address', 'custom_attributes'
+                    //extension_attributes
+                    'custom_attributes'
                 ], 'yii2tech\embedded\Validator',
             ],
         ];
@@ -100,7 +102,7 @@ class Address implements ContainerInterface
         );
     }
 
-    private function isArray($attribute)
+    public function isArray($attribute)
     {
         return is_array($this->$attribute);
     }
