@@ -8,10 +8,18 @@ class ActiveApi extends \yii\base\Model
 {
 
     use ArrayableTrait;
-    const ERROR_ATTRIBUTE = 'response';
+    const ERROR_ATTRIBUTE      = 'response';
+    const EVENT_INITIALIZATION = 'initialization';
 
     protected static $source;
     private $resultHandlerClassName = 'springimport\yii2\magento2\activeapi\components\ResultHandler';
+
+    public function __construct($config = array())
+    {
+        $this->trigger(self::EVENT_INITIALIZATION);
+
+        parent::__construct($config);
+    }
 
     public function setResultHandler($resultHandler)
     {

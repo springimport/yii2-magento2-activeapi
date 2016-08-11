@@ -43,7 +43,7 @@ class Example extends ActiveApi implements ContainerInterface
     public function urls()
     {
         return [
-            self::SCENARIO_EXAMPLE_URL => sprintf('example/%s', $this->entity_id),
+            self::SCENARIO_EXAMPLE_URL => 'example/%s',
         ];
     }
 
