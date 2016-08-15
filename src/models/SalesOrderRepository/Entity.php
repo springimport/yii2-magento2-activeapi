@@ -4,9 +4,13 @@ namespace springimport\yii2\magento2\activeapi\models\SalesOrderRepository;
 
 use yii\base\Model;
 use springimport\yii2\magento2\activeapi;
+use yii2tech\embedded\ContainerInterface;
+use yii2tech\embedded\ContainerTrait;
 
-class Entity extends Model
+class Entity extends Model implements ContainerInterface
 {
+
+    use ContainerTrait;
     public $entity_id;
     public $extension_attributes;
     // custom attributes

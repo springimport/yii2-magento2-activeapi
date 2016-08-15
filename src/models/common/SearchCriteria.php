@@ -23,9 +23,6 @@ class SearchCriteria extends Model implements ContainerInterface
     {
         return [
             [
-                ['filterGroups'], 'required',
-            ],
-            [
                 ['filterGroups', 'sortOrders', 'pageSize', 'currentPage'], 'safe',
             ],
             [

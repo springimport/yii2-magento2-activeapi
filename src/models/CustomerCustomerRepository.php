@@ -2,29 +2,28 @@
 
 namespace springimport\yii2\magento2\activeapi\models;
 
-use springimport\yii2\magento2\activeapi;
+use springimport\yii2\magento2\activeapi\components\ActiveApi;
 use yii2tech\embedded\ContainerInterface;
 use yii2tech\embedded\ContainerTrait;
 use springimport\yii2\magento2\activeapi\models\common\SearchCriteria;
 
-class SalesOrderRepository extends activeapi\components\ActiveApi implements ContainerInterface
+class CustomerCustomerRepository extends ActiveApi implements ContainerInterface
 {
 
     use ContainerTrait;
-    const SCENARIO_POST_ORDERS = 'postOrders';
-    const SCENARIO_GET_ORDERS  = 'getOrders';
+    const SCENARIO_GET_CUSTOMERS_SEARCH     = 'getCustomersSearch';
+    const SCENARIO_GET_CUSTOMERS_CUSTOMERID = 'getCustomersCustomerId';
 
-    public $entity;
     public $searchCriteria;
 
     public function rules()
     {
         return [
             [
-                ['entity', 'searchCriteria'], 'required',
+                'searchCriteria', 'required',
             ],
             [
-                ['entity', 'searchCriteria'], 'yii2tech\embedded\Validator',
+                'searchCriteria', 'yii2tech\embedded\Validator',
             ],
         ];
     }
@@ -32,7 +31,6 @@ class SalesOrderRepository extends activeapi\components\ActiveApi implements Con
     public function attributeLabels()
     {
         return [
-            'entity' => 'Entity',
             'searchCriteria' => 'Search Criteria',
         ];
     }
@@ -40,25 +38,17 @@ class SalesOrderRepository extends activeapi\components\ActiveApi implements Con
     public function scenarios()
     {
         return [
-            self::SCENARIO_POST_ORDERS => ['entity'],
-            self::SCENARIO_GET_ORDERS => ['searchCriteria'],
+            self::SCENARIO_GET_CUSTOMERS_SEARCH => ['searchCriteria'],
+            self::SCENARIO_GET_CUSTOMERS_CUSTOMERID => [],
         ];
     }
 
     public function urls()
     {
         return [
-            self::SCENARIO_POST_ORDERS => 'orders',
-            self::SCENARIO_GET_ORDERS => 'orders',
+            self::SCENARIO_GET_CUSTOMERS_SEARCH => 'customers/search',
+            self::SCENARIO_GET_CUSTOMERS_CUSTOMERID => 'customers/%s',
         ];
-    }
-
-    public function embedEntity()
-    {
-        return $this->mapEmbedded(
-        'entity', activeapi\models\SalesOrderRepository\Entity::className(),
-        ['unsetSource' => false]
-        );
     }
 
     public function embedSearchCriteria()
