@@ -13,22 +13,15 @@ class Entity extends Model implements ContainerInterface
     use ContainerTrait;
     public $entity_id;
     public $extension_attributes;
-    // custom attributes
-    public $order_date;
 
     public function rules()
     {
         return [
             [
-                [
-                ],
-                'required',
+                'extension_attributes', 'safe',
             ],
             [
-                ['extension_attributes', 'order_date'], 'safe',
-            ],
-            [
-                ['extension_attributes'], 'yii2tech\embedded\Validator',
+                'extension_attributes', 'yii2tech\embedded\Validator',
             ],
         ];
     }

@@ -10,7 +10,8 @@ class Example extends ActiveApi implements ContainerInterface
 {
 
     use ContainerTrait;
-    const SCENARIO_EXAMPLE_URL = 'example';
+    const SCENARIO_GET_EXAMPLE = 'getExample';
+    const SCENARIO_POST_EXAMPLE = 'postExample';
 
     public $entity_id;
 
@@ -36,14 +37,16 @@ class Example extends ActiveApi implements ContainerInterface
     public function scenarios()
     {
         return [
-            self::SCENARIO_EXAMPLE_URL => ['entity_id'],
+            self::SCENARIO_GET_EXAMPLE => ['entity_id'],
+            self::SCENARIO_POST_EXAMPLE => ['entity_id'],
         ];
     }
 
     public function urls()
     {
         return [
-            self::SCENARIO_EXAMPLE_URL => 'example/%s',
+            self::SCENARIO_GET_EXAMPLE => 'example/%s',
+            self::SCENARIO_POST_EXAMPLE => 'example',
         ];
     }
 
@@ -51,6 +54,15 @@ class Example extends ActiveApi implements ContainerInterface
     {
         return $this->mapEmbedded(
         'entity_id', Magento2ApiARTest2::className(), ['unsetSource' => false]
+        );
+    }
+
+    public function embedItem()
+    {
+        return $this->mapEmbeddedList(
+        'extension_attributes',
+        Item::className(),
+        ['unsetSource' => false]
         );
     }
 }
