@@ -60,8 +60,6 @@ class ResultHandler extends AbstractResultHandler
 
     protected function parseErrors()
     {
-        //echo \yii\helpers\VarDumper::dump($this->content, 10, true);exit;
-        
         if ($this->content && isset($this->content->message)) {
             if (isset($this->content->parameters)) {
                 $engine = new StringTemplate\Engine(
