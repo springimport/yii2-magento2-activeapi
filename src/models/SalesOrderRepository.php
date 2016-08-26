@@ -13,6 +13,7 @@ class SalesOrderRepository extends activeapi\components\ActiveApi implements Con
     use ContainerTrait;
     const SCENARIO_POST_ORDERS = 'postOrders';
     const SCENARIO_GET_ORDERS  = 'getOrders';
+    const SCENARIO_GET_ORDER  = 'getOrder';
 
     public $entity;
     public $searchCriteria;
@@ -42,6 +43,7 @@ class SalesOrderRepository extends activeapi\components\ActiveApi implements Con
         return [
             self::SCENARIO_POST_ORDERS => ['entity'],
             self::SCENARIO_GET_ORDERS => ['searchCriteria'],
+            self::SCENARIO_GET_ORDER => [],
         ];
     }
 
@@ -50,6 +52,7 @@ class SalesOrderRepository extends activeapi\components\ActiveApi implements Con
         return [
             self::SCENARIO_POST_ORDERS => 'orders',
             self::SCENARIO_GET_ORDERS => 'orders',
+            self::SCENARIO_GET_ORDER => 'orders/%s',
         ];
     }
 
