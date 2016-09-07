@@ -14,6 +14,7 @@ class CatalogProductRepository extends ActiveApi implements ContainerInterface
     use ContainerTrait;
     const SCENARIO_GET_PRODUCTS        = 'getProducts';
     const SCENARIO_DELETE_PRODUCTS_SKU = 'deleteProductsSku';
+    const SCENARIO_POST_PRODUCTS       = 'postProducts';
     const SCENARIO_PUT_PRODUCTS_SKU    = 'putProductsSku';
 
     public $searchCriteria;
@@ -27,7 +28,7 @@ class CatalogProductRepository extends ActiveApi implements ContainerInterface
                 ['searchCriteria', 'product'], 'required',
             ],
             [
-                'saveOptions', 'safe', 'rule' => ['in', 'range' => ['true', 'false']],
+                ['saveOptions'], 'each', 'rule' => ['in', 'range' => ['true', 'false']],
             ],
             [
                 ['searchCriteria', 'product'], 'yii2tech\embedded\Validator'
@@ -49,6 +50,7 @@ class CatalogProductRepository extends ActiveApi implements ContainerInterface
         return [
             self::SCENARIO_GET_PRODUCTS => ['searchCriteria'],
             self::SCENARIO_DELETE_PRODUCTS_SKU => [],
+            self::SCENARIO_POST_PRODUCTS => ['product', 'saveOptions'],
             self::SCENARIO_PUT_PRODUCTS_SKU => ['product', 'saveOptions'],
         ];
     }
@@ -58,6 +60,7 @@ class CatalogProductRepository extends ActiveApi implements ContainerInterface
         return [
             self::SCENARIO_GET_PRODUCTS => 'products',
             self::SCENARIO_DELETE_PRODUCTS_SKU => 'products/%s',
+            self::SCENARIO_POST_PRODUCTS => 'products',
             self::SCENARIO_PUT_PRODUCTS_SKU => 'products/%s',
         ];
     }
