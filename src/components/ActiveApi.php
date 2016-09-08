@@ -83,9 +83,9 @@ class ActiveApi extends \yii\base\Model
     public function put(array $options = [])
     {
         $url = $this->getScenarioUrl($options);
-
+        
         $response = self::getSource()->put($url, ['json' => $this->toArray()]);
-
+        
         return $this->result($response);
     }
 

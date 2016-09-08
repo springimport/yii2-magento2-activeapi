@@ -93,7 +93,7 @@ class Product extends Model implements ContainerInterface
 
     public function embedCustom_attributes()
     {
-        return $this->mapEmbedded(
+        return $this->mapEmbeddedList(
         'custom_attributes', CustomAttributes::className(),
         ['unsetSource' => false]
         );

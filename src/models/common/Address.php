@@ -41,15 +41,17 @@ class Address extends Model implements ContainerInterface
         return [
             [
                 [
-                    'region', 'region_id', 'region_code', 'country_id', 'street',
-                    'telephone', 'postcode', 'city', 'firstname', 'lastname', 'email',
+                    'region', 'country_id', 'street',
+                    'telephone', 'postcode', 'city', 'firstname', 'lastname',
                 ],
                 'required',
             ],
             [
-                ['id', 'company', 'fax', 'middlename', 'prefix', 'suffix', 'vat_id',
-                    'customer_id', 'same_as_billing', 'customer_address_id', 'save_in_address_book',
-                    'extension_attributes', 'custom_attributes',],
+                [
+                    'id', 'region_id', 'region_code', 'company', 'fax', 'middlename', 'prefix',
+                    'suffix', 'vat_id', 'customer_id', 'email', 'same_as_billing', 'customer_address_id',
+                    'save_in_address_book', 'extension_attributes', 'custom_attributes'
+                ],
                 'safe',
             ],
             [
@@ -96,7 +98,7 @@ class Address extends Model implements ContainerInterface
 
     public function embedCustom_attributes()
     {
-        return $this->mapEmbedded(
+        return $this->mapEmbeddedList(
         'custom_attributes', CustomAttributes::className(),
         ['unsetSource' => false]
         );
