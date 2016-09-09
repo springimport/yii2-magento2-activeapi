@@ -12,13 +12,14 @@ class Entity extends Model implements ContainerInterface
 
     use ContainerTrait;
     public $entity_id;
+    public $increment_id;
     public $extension_attributes;
 
     public function rules()
     {
         return [
             [
-                'extension_attributes', 'safe',
+                ['extension_attributes', 'increment_id'], 'safe',
             ],
             [
                 'extension_attributes', 'yii2tech\embedded\Validator',
