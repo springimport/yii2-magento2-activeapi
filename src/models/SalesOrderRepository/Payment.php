@@ -1,33 +1,33 @@
 <?php
 
-namespace springimport\yii2\magento2\activeapi\models\common;
+namespace springimport\yii2\magento2\activeapi\models\SalesOrderRepository;
 
+use yii\base\Model;
 use yii2tech\embedded\ContainerInterface;
 use yii2tech\embedded\ContainerTrait;
-use yii\base\Model;
 use springimport\yii2\magento2\activeapi\components\EmbedValidationMethods\ExtensionAttributesTrait;
 
-class Region extends Model implements ContainerInterface
+class Payment extends Model implements ContainerInterface
 {
 
     use ContainerTrait,
         ExtensionAttributesTrait;
-    public $region_code;
-    public $region;
-    public $region_id;
+    public $po_number;
+    public $method;
+    public $entity_id;
     public $extension_attributes;
 
     public function rules()
     {
         return [
             [
-                [
-                    'region_code', 'region', 'region_id',
-                ],
-                'safe',
+                ['po_number', 'entity_id'], 'safe',
             ],
             [
-                'extension_attributes', 'yii2tech\embedded\Validator',
+                ['method'], 'required',
+            ],
+            [
+                ['extension_attributes'], 'yii2tech\embedded\Validator',
             ],
         ];
     }
@@ -35,10 +35,10 @@ class Region extends Model implements ContainerInterface
     public function attributeLabels()
     {
         return [
-            'region_code' => 'Region Code',
-            'region' => 'Region',
-            'region_id' => 'Region_id',
             'extension_attributes' => 'Extension Attributes',
+            'po_number' => 'PO number',
+            'method' => 'Method',
+            'entity_id' => 'entity_id',
         ];
     }
 }

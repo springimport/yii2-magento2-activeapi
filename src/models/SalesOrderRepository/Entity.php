@@ -13,6 +13,7 @@ class Entity extends Model implements ContainerInterface
     use ContainerTrait;
     public $entity_id;
     public $increment_id;
+    public $payment;
     public $extension_attributes;
 
     public function rules()
@@ -22,7 +23,7 @@ class Entity extends Model implements ContainerInterface
                 ['extension_attributes', 'increment_id'], 'safe',
             ],
             [
-                'extension_attributes', 'yii2tech\embedded\Validator',
+                ['extension_attributes', 'payment'], 'yii2tech\embedded\Validator',
             ],
         ];
     }
@@ -31,6 +32,7 @@ class Entity extends Model implements ContainerInterface
     {
         return [
             'extension_attributes' => 'Extension Attributes',
+            'payment' => 'Payment',
         ];
     }
 
@@ -39,6 +41,14 @@ class Entity extends Model implements ContainerInterface
         return $this->mapEmbedded(
         'extension_attributes',
         activeapi\models\common\ExtensionAttributes::className(),
+        ['unsetSource' => false]
+        );
+    }
+
+    public function embedPayment()
+    {
+        return $this->mapEmbedded(
+        'payment', activeapi\models\SalesOrderRepository\Payment::className(),
         ['unsetSource' => false]
         );
     }

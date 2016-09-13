@@ -5,15 +5,15 @@ namespace springimport\yii2\magento2\activeapi\models\CustomerCustomerRepository
 use yii2tech\embedded\ContainerInterface;
 use yii2tech\embedded\ContainerTrait;
 use yii\base\Model;
-use springimport\yii2\magento2\activeapi\components\EmbedValidationMethods\ExtensionAttributesTrait as EmbedValidationExtensionAttributesTrait;
-use springimport\yii2\magento2\activeapi\components\EmbedValidationMethods\CustomAttributesTrait as EmbedValidationCustomAttributesTrait;
+use springimport\yii2\magento2\activeapi\components\EmbedValidationMethods\ExtensionAttributesTrait;
+use springimport\yii2\magento2\activeapi\components\EmbedValidationMethods\CustomAttributesTrait;
 
 class Customer extends Model implements ContainerInterface
 {
 
     use ContainerTrait,
-        EmbedValidationExtensionAttributesTrait,
-        EmbedValidationCustomAttributesTrait;
+        ExtensionAttributesTrait,
+        CustomAttributesTrait;
     public $id;
     public $group_id;
     public $default_billing;
