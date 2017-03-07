@@ -2,7 +2,7 @@
 
 namespace springimport\yii2\magento2\activeapi\components;
 
-use Teapot\HttpResponse\Status\StatusCode;
+use Teapot\StatusCode;
 
 abstract class AbstractResultHandler implements ResultHandlerInterface
 {

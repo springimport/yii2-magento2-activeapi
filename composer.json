@@ -13,7 +13,7 @@
     "require": {
         "yiisoft/yii2": "*",
         "springimport/magento2-api-v1": "*",
-        "teapot/status": "@dev",
+        "shrikeh/teapot": "^2.3.0",
         "yii2tech/embedded": "^1.0"
     },
     "autoload": {
